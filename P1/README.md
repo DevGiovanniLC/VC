@@ -3,7 +3,7 @@
 ## Autores
 [![GitHub](https://img.shields.io/badge/GitHub-Elena%20Morales%20Gil-brightgreen?style=flat-square&logo=github)](https://github.com/ElenaMoralesGil)
 
-[![GitHub](https://img.shields.io/badge/GitHub-Giovanni%20López%20Cervantes-yellow?style=flat-square&logo=github)](https://github.com/DevGiovanniLC)
+[![GitHub](https://img.shields.io/badge/GitHub-Giovanni%20León%20Corujo-yellow?style=flat-square&logo=github)](https://github.com/DevGiovanniLC)
 
 ## Tecnologias
   -  Python: ![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square&logo=python)
@@ -60,7 +60,7 @@ Este ejercicio expande el anterior al enfocarse no solo en un píxel, sino en un
 
 ## Crear un efecto Pop Art personalizado <a name="crear-un-efecto-pop-art-personalizado"></a>
 
-Este ejercicio utiliza la cámara web  en tiempo real para crear un collage en estilo "Pop Art". La pantalla se divide en una cuadrícula de celdas que muestran diferentes versiones del video, aplicando diferentes filtros de color en cada una. La cantidad de celdas se puede aumentar o disminuir con el teclado, apretando la "q" o "e". También al precionar la w o s se cambia la posición de los filtros.
+Este ejercicio utiliza la cámara web  en tiempo real para crear un collage en estilo "Pop Art". La pantalla se divide en una cuadrícula de celdas que muestran diferentes versiones del video, aplicando diferentes filtros de color en cada una. La cantidad de celdas se puede aumentar o disminuir con el teclado, apretando la "q" o "e". También al precionar la "w" o "s" se cambia la posición de los filtros.
 
 ## Conclusión <a name="conclusión"></a>
 
