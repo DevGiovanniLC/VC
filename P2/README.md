@@ -22,6 +22,13 @@
 
 
 ## Histograma pixeles blancos por filas <a name="histfilas"></a>
+
+Este ejercicio consiste en:
+-   Realizar la cuenta de píxeles blancos por filas. 
+-   Determinar el máximo para filas y columna
+-   Mostrar el número de filas con un número de píxeles blancos mayor o igual que 0.95\*máximo.
+
+Para contar los pixeles 
 ## Umbralizado de la imagen <a name="umbralizado"></a>
 ## Pop art de detección de imagenes <a name="popart"></a>
 ## Detección de movimiento <a name="movimiento"></a>
