@@ -64,3 +64,4 @@ Este ejercicio implementa un sistema de detección de movimiento utilizando Open
 
 En este ejercicio se ha utilizado desenfoque gaussiano con umbralización para reducir el ruido y detectar diferencias de movimiento. Además, se realiza la detección de contornos para identificar las áreas con movimiento, y se filtran los contornos pequeños para mejorar la precisión. La dilatación se aplica para unir áreas de movimiento cercanas y mejorar la detección. Finalmente, se suavizan los rectángulos detectados para una transición más fluida y se dibuja una estela de los últimos rectángulos detectados.
 
+![alt text](image-2.png)
