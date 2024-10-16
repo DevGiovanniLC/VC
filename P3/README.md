@@ -1,4 +1,4 @@
-Práctica 3.
+# Práctica 3. Detección y reconocimiento de formas
 
 ## Autores
 [![GitHub](https://img.shields.io/badge/GitHub-Elena%20Morales%20Gil-brightgreen?style=flat-square&logo=github)](https://github.com/ElenaMoralesGil)
