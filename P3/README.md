@@ -16,16 +16,7 @@ Práctica 3.
 ## Índice
 1. [Introducción](#introducción)
 2. [Tarea 1: Detección y Clasificación de Monedas Europeas](#tarea-1-detección-y-clasificación-de-monedas-europeas)
-   - 1.1 [Descripción general](#descripción-general)
-   - 1.2 [Escalado de imágenes usando 1 euro](#escalado-de-imágenes-usando-1-euro)
-   - 1.3 [Características utilizadas](#características-utilizadas)
-   - 1.4 [Detección del valor de las monedas](#detección-del-valor-de-las-monedas)
 3. [Tarea 2: Clasificación de Imágenes con Random Forest](#tarea-2-clasificación-de-imágenes-con-random-forest)
-   - 2.1 [Descripción general](#descripción-general-2)
-   - 2.2 [Extracción de características](#extracción-de-características)
-   - 2.3 [Entrenamiento del modelo](#entrenamiento-del-modelo)
-   - 2.4 [Evaluación del rendimiento](#evaluación-del-rendimiento)
-4. [Conclusión](#conclusión)
 
 ## Introducción
 Este proyecto se divide en dos tareas principales:
