@@ -9,9 +9,55 @@ Práctica 3.
   -  Python: ![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square&logo=python)
 
 ## Bibliotecas
-  - OpenCV: ![OpenCV](https://img.shields.io/badge/OpenCV-Latest-brightgreen?style=flat-square&logo=opencv)
-  - Matplotlib: ![Matplotlib](https://img.shields.io/badge/Matplotlib-Latest-yellow?style=flat-square&logo=matplotlib)
-  - NumPy: ![NumPy](https://img.shields.io/badge/NumPy-Latest-blueviolet?style=flat-square&logo=numpy)
+
+El proyecto utiliza las siguientes bibliotecas para procesamiento de imágenes, análisis de datos y visualización:
+
+- OpenCV: ![OpenCV](https://img.shields.io/badge/OpenCV-Latest-brightgreen?style=flat-square&logo=opencv)
+  - **Importación**: 
+    ```python
+    import cv2
+    ```
+  - Descripción: Biblioteca de visión por computadora utilizada para la manipulación de imágenes y detección de características como contornos y círculos.
+
+- NumPy: ![NumPy](https://img.shields.io/badge/NumPy-Latest-blueviolet?style=flat-square&logo=numpy)
+  - **Importación**: 
+    ```python
+    import numpy as np
+    ```
+  - Descripción: Utilizada para operaciones matemáticas y manipulación de matrices, como la conversión y manejo de datos de imágenes.
+
+- Matplotlib: ![Matplotlib](https://img.shields.io/badge/Matplotlib-Latest-yellow?style=flat-square&logo=matplotlib)
+  - **Importación**:
+    ```python
+    import matplotlib.pyplot as plt
+    ```
+  - Descripción: Biblioteca de visualización gráfica usada para mostrar imágenes, gráficas y resultados de análisis.
+
+- Pandas: ![Pandas](https://img.shields.io/badge/Pandas-Latest-orange?style=flat-square&logo=pandas)
+  - **Importación**:
+    ```python
+    import pandas as pd
+    ```
+  - Descripción: Librería poderosa para la manipulación de datos en estructuras como DataFrames, útil para manejar conjuntos de datos tabulares.
+
+- Scikit-learn: ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Latest-blue?style=flat-square&logo=scikitlearn)
+  - **Importación**:
+    ```python
+    from sklearn.model_selection import train_test_split
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.metrics import confusion_matrix, classification_report
+    ```
+  - Descripción: Conjunto de herramientas para el aprendizaje automático y minería de datos. En este proyecto se utiliza para clasificar imágenes mediante el modelo **Random Forest** y evaluar su rendimiento.
+
+- Seaborn: ![Seaborn](https://img.shields.io/badge/Seaborn-Latest-cyan?style=flat-square&logo=seaborn)
+  - **Importación**:
+    ```python
+    import seaborn as sns
+    ```
+  - Descripción: Biblioteca basada en Matplotlib, especializada en la creación de visualizaciones estadísticas atractivas, como matrices de confusión.
+
+Estas bibliotecas son esenciales para procesar las imágenes, extraer características, construir modelos de clasificación y visualizar los resultados en este proyecto.
+
 
 ## Índice
 1. [Introducción](#introducción)
