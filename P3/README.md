@@ -83,6 +83,8 @@ Se analiza el color promedio de cada moneda dentro de un radio ajustado para ide
 
 Con la escala y el color promedio, el sistema clasifica la moneda haciendo una comparación con un diccionario de valores de referencia de las monedas europeas.
 
+También se calcula el valor total de la suma de todas las monedas que hay en la imagen una vez que se consiga la escala.  Se muestra en la consola. 
+
 ## Tarea 2: Clasificación de Imágenes con Random Forest
 
 Se cargan imágenes de tres categorías: fragmentos, pellets, y tar.
