@@ -3,3 +3,11 @@
 /P4/README (1).md
 /P4/yolo11n-pose.pt
 /P4/yolo11n.pt
+/P4/datasets
+/P4/resources
+/P4/runs/detect/train
+/P4/runs/detect/train2
+/P4/runs/detect/train5
+/P4/runs/detect/train15
+/P4/C0142.MP4
+/P4/resultado_deteccion.mp4
