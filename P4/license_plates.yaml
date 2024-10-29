@@ -1,5 +1,0 @@
-nc: 1
-names: ["matrícula"]
-train: "./matriculas-europeas/train/images"
-val: "./matriculas-europeas/val/images"
-test: "./matriculas-europeas/test/images"

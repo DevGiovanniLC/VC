@@ -1,0 +1,5 @@
+nc: 1
+names: ["matricula"]
+train: "./matriculas-españolas/train/images"
+val: "./matriculas-españolas/val/images"
+test: "./matriculas-españolas/test/images"
