@@ -101,12 +101,71 @@
 ## Introducción
 Este proyecto se divide en 4 elementos que se unifican para dar un resultado conjunto, dos de ellas son optativas, Anonimización y detección de dirección. Las tras dos necesarias para completar la práctica Modelo de detección de matrículas y el identificador de texto (OCR).
 
-## Detector de matrículas (YOLO)
+# Detector de matrículas (YOLO)
 
-## Anonimización de transeúntes y vehículos
+# Anonimización de transeúntes y vehículos
 
-## Identificación de texto (OCR)
+# Identificación de texto (OCR)
+El objetivo es detectar y extraer texto de imágenes, como matrículas de vehículos, utilizando la biblioteca EasyOCR y técnicas de procesamiento de imágenes con OpenCV. Intentando tener la mayor
+probabilidad de detección.
 
-## Detección de dirección de transeúntes y vehículos
+### 1. Función mostrar_imagen(imagen):*
+Esta función recibe una imagen y la muestra utilizando Matplotlib. Convierte la imagen de BGR (formato usado por OpenCV) a RGB para su correcta visualización.
+
+### 2. Función preprocesar_imagen(imagen):
+Convierte la imagen a escala de grises, aplica desenfoque y umbralización para obtener una imagen binaria que facilita la detección de texto.
+
+### 3. Función OCR(imagen):
+Función principal que toma una imagen, la preprocesa y la pasa a través de la función de detección. Devuelve el resultado final del OCR.
+
+### 4. Función procesar_deteccion(imagen_procesada):
+Esta función ejecuta un ciclo para mejorar la detección de texto en la imagen procesada, actualizando el texto y la probabilidad de detección hasta que no haya mejoras.
+
+### 5. Función postprocesar_imagen(imagen):
+Realiza el post-procesamiento de la imagen, aplicando un desenfoque gaussiano y ajustando el contraste. Se asegura de que la imagen tenga dimensiones adecuadas.
+
+### 6. Función detectar_texto(imagen_procesada):
+Utiliza EasyOCR para detectar texto en la imagen procesada. Retorna la región de interés (ROI) donde se ha detectado texto, junto con el texto y su probabilidad de detección. Si hay varias de detecciones intenta abarcar todo el area de la imagen.
 
 
+Posteriormente a la hora de la detección se le da prioridad de que la longitud del texto sea la adecuada, aunque la probabilidad de la imagen sea peor. Para optimizar que el resultado sea el más cercano posible al texto de la matrícula.
+
+![alt text](image.png)
+
+
+# Detección de dirección de transeúntes y vehículos
+Toda la detección de la dirección se realiza en la siguiente función:
+### Función detectar_direccion
+La función detectar_direccion tiene como objetivo clasificar la dirección de objetos detectados en función de su posición en el fotograma. Los objetos detectados, que pueden ser personas, bicicletas o vehículos, se clasifican en dos categorías según su dirección aparente:
+
+* "from_front": Indica que el objeto se está acercando desde el frente.
+* "to_front": Indica que el objeto se está alejando o moviendo hacia el frente de la cámara.
+Parámetros
+* track_id (int): Identificador único del objeto en seguimiento. Cada objeto detectado tiene un track_id para diferenciarlo de otros.
+label_name (str): Nombre de la clase del objeto (p. ej., "person", "bicycle", "car").
+* x (int): Coordenada X del borde derecho del objeto en el fotograma.
+frame (np.array): Imagen del fotograma actual, que se utiliza para obtener el ancho del fotograma.
+Funcionamiento
+
+#### Comprobación del estado del track_id: 
+
+La función verifica si el track_id del objeto ya ha sido clasificado previamente como "from_front" o "to_front". Para ello, recorre todas las entradas en el diccionario datos. Si el track_id ya está en cualquiera de estas listas, se establece id_inside como True y no se realiza ninguna clasificación adicional para ese objeto en este fotograma.
+
+#### Clasificación según la posición en el fotograma:
+
+Si el track_id no ha sido clasificado aún (id_inside es False), se procede a la clasificación basada en el tipo de objeto (label_name) y su coordenada X (x):
+Para personas y bicicletas: Se considera que vienen "de frente" (to_front) si están ubicadas en el 20% más cercano del fotograma a la izquierda o en el rango entre el 70% y el 95% del ancho del fotograma en la derecha. En caso contrario, se clasifican como "from_front".
+
+Para otros objetos (vehículos): Los vehículos se clasifican como "from_front" si su coordenada X está en el 70% de la parte izquierda del fotograma, o como "to_front" si están en el 10% de la derecha (es decir, más allá del 90% del ancho del fotograma).
+Almacenamiento en el diccionario datos: Según la clasificación, el track_id se añade a la lista correspondiente (from_front o to_front) dentro de la categoría especificada en label_name.
+
+En el conteo final solo tiene los vehiculos en circulación no contabiliza los que están aparcados
+
+![alt text](conteo.jpeg)
+
+
+
+
+
+
+[![Ver video](image-1.png)](https://drive.google.com/file/d/1DAhQNVXcXT-vgKi823JkiUI-vVsC4umz/view?usp=drive_link)
