@@ -122,10 +122,11 @@
 
 ## Índice
 1. [Introducción](#introducción)
-3. [Detector de matrículas (YOLO)](#detector-de-matrículas-yolo)
-4. [Anonimización de transeúntes y vehículos](#anonimización-de-transeúntes-y-vehículos)
-2. [Identificación de texto (OCR)](#identificación-de-texto-ocr)
-5. [Detección de dirección de transeúntes y vehículos](#detección-de-dirección-de-transeúntes-y-vehículos)
+2. [Detector de matrículas (YOLO)](#detector-de-matrículas-yolo)
+3. [Explicación general](#general)
+   - [Anonimización de transeúntes y vehículos](#anonimización-de-transeúntes-y-vehículos)
+   - [Identificación de texto (OCR)](#identificación-de-texto-ocr)
+   - [Detección de dirección de transeúntes y vehículos](#detección-de-dirección-de-transeúntes-y-vehículos)
 
 
 ## Introducción
@@ -178,9 +179,6 @@ Difuminado de Imágenes para anonimato: El código aplica un desenfoque a las im
 
 Salida de Datos: Los resultados de la detección se almacenan en un archivo CSV que incluye información como el tipo de objeto, el nivel de confianza, el identificador de seguimiento, las coordenadas del cuadro delimitador y, en caso de vehículos, la información de la matrícula.
 
-Generación de Video de Salida: El resultado del procesamiento se guarda en un nuevo archivo de video donde se destacan las detecciones y se muestra información adicional sobre cada objeto.
-# Anonimización de transeúntes y vehículos
-
 Se implementa un sistema de anonimato para proteger la identidad de personas y vehículos en las imágenes y videos procesados. Esto se logra mediante un enfoque de desenfoque en áreas específicas de la imagen, asegurando que la información sensible no sea visible.
 
 - **Difuminado de Personas:** Cuando se detecta una persona, se aplica un desenfoque (Gaussian Blur) en la región de interés (ROI) que ocupa. Esto garantiza que las personas no sean identificables en el video de salida.
@@ -189,12 +187,16 @@ Se implementa un sistema de anonimato para proteger la identidad de personas y v
 
   - Las áreas donde se detectan las matrículas se mantienen nítidas y se les permite mostrar el texto de la matrícula bajo condiciones de confianza específicas.
   - Se aplica un desenfoque en el resto del vehículo, asegurando que las matrículas sean visibles, pero la información de contexto (como la imagen del vehículo) esté difuminada.
+ 
+Generación de Video de Salida: El resultado del procesamiento se guarda en un nuevo archivo de video donde se destacan las detecciones y se muestra información adicional sobre cada objeto. Este archivo resultante se encuentra [aquí](https://alumnosulpgc-my.sharepoint.com/:v:/g/personal/elena_morales104_alu_ulpgc_es/ETVBdUMhXaRBnUolhiwRJTEBJwjz3SAbVRdcSkOJzAzSpw?e=yQCVO9&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
+
+## Anonimización de transeúntes y vehículos
 
 Este enfoque permite mantener un balance entre la utilidad del sistema de detección y la protección de la privacidad
 
 ![image](https://github.com/user-attachments/assets/f7013d51-8f31-4850-ac31-6d6ad7b73c23)
 
-# Identificación de texto (OCR)
+## Identificación de texto (OCR)
 El objetivo es detectar y extraer texto de imágenes, como matrículas de vehículos, utilizando la biblioteca EasyOCR y técnicas de procesamiento de imágenes con OpenCV. Intentando tener la mayor
 probabilidad de detección.
 
@@ -222,7 +224,7 @@ Posteriormente a la hora de la detección se le da prioridad de que la longitud 
 ![alt text](image.png)
 
 
-# Detección de dirección de transeúntes y vehículos
+## Detección de dirección de transeúntes y vehículos
 Toda la detección de la dirección se realiza en la siguiente función:
 ### Función detectar_direccion
 La función detectar_direccion tiene como objetivo clasificar la dirección de objetos detectados en función de su posición en el fotograma. Los objetos detectados, que pueden ser personas, bicicletas o vehículos, se clasifican en dos categorías según su dirección aparente:
