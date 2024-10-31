@@ -103,6 +103,12 @@ Este proyecto se divide en 4 elementos que se unifican para dar un resultado con
 
 # Detector de matrículas (YOLO)
 
+Se ha usado este dataset proporcionado en el proyecto, puedes utilizar el siguiente enlace:
+
+[Dataset](https://alumnosulpgc-my.sharepoint.com/:u:/g/personal/elena_morales104_alu_ulpgc_es/EfKtczlxJQFIlWnynEJdK8gBURi6-WyTLEQyttN8zKxAuw?e=m1TvBb)
+
+Este archivo contiene las imágenes y las etiquetas necesarias para entrenar el modelo de detección de matrículas en formato YOLO. 
+
 # Anonimización de transeúntes y vehículos
 
 # Identificación de texto (OCR)
