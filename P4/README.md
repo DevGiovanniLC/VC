@@ -116,7 +116,14 @@
 
 
 ## Introducción
-Este proyecto se divide en 4 elementos que se unifican para dar un resultado conjunto, dos de ellas son optativas, Anonimización y detección de dirección. Las tras dos necesarias para completar la práctica Modelo de detección de matrículas y el identificador de texto (OCR). 
+Este proyecto contiene  lo siguiente:
+- Detector y seguimiento de las personas y vehículos presentes
+- Detector y lector de  matrículas de los vehículos presentes
+- Contador del total de cada clase
+- Detector de flujo de personas y vehículos en distintas direcciones
+- Anonimato de las personas y vehículos presentes
+- Un archivo csv con el resultado de la detección y seguimiento.
+- un vídeo que visualice los resultados
 
 # Detector de matrículas (YOLO)
 
@@ -124,7 +131,7 @@ Se ha usado este dataset proporcionado en el proyecto, puedes utilizar el siguie
 
 [Dataset](https://alumnosulpgc-my.sharepoint.com/:u:/g/personal/elena_morales104_alu_ulpgc_es/EfKtczlxJQFIlWnynEJdK8gBURi6-WyTLEQyttN8zKxAuw?e=m1TvBb)
 
-Este archivo contiene las imágenes y las etiquetas necesarias para entrenar el modelo de detección de matrículas en formato YOLO. Estas imagenes, son 290 imagenes de matrículas españolas recopiladas de [PlatesMania](https://platesmania.com/es/). El etiquetado de las imagenes se ha usado la herramienta Labelme. En el cuaderno se encuentra el código que hizo la distribución en 70% train, 20% val y 10% test, además de la conversión de formato labelme a YOLO. 
+Este archivo contiene las imágenes y las etiquetas necesarias para entrenar el modelo de detección de matrículas en formato YOLO. Estas imágenes, son 290 imágenes de matrículas españolas recopiladas de [PlatesMania](https://platesmania.com/es/). El etiquetado de las imágenes se ha usado la herramienta Labelme. En el cuaderno se encuentra el código que hizo la distribución en 70% train, 20% val y 10% test, además de la conversión de formato labelme a YOLO. 
 
 Para la detección de matrículas se ha decidido utilizar DetectionTrainer de Ultralytics. Este entrenador facilita la configuración y el entrenamiento de modelos YOLO.
 
@@ -143,27 +150,27 @@ Hay varios parámetros clave:
 - patience: Permite 25 épocas sin mejora antes de detener el entrenamiento.
 - augment: Habilita la aumentación de datos.
 
-De este modelo que se encuentra en /runs/detect/train32/weight/best.pt se ha sacado los siguientes resultados. 
+De este modelo que se encuentra en /runs/detect/train32/weight/best.pt se han sacado los siguientes resultados. 
 ![image](https://github.com/user-attachments/assets/bab0ef34-58c8-4c33-a56b-8b25cf7aca3f)
 ![image](https://github.com/user-attachments/assets/ba678634-2058-4e67-8f74-5fbd3b2ef518)
 
-Tanto en la pérdida como en la precisión se nota que en las primeras épocas le cuesta pero luego rápidamente sobre la época 15 mejora conciderablemente. Esta rápida mejora nos pareció un poco raro, pensabamos que quizás estaba memorizando las imagenes, pero cuando lo comprobamos en el video se ve que detecta muy bien las matrículas. 
+Tanto en la pérdida como en la precisión se nota que en las primeras épocas le cuesta, pero luego rápidamente sobre la época 15 mejora considerablemente. Esta rápida mejora nos pareció un poco raro, pensabamos que quizás estaba memorizando las imágenes, pero cuando lo comprobamos en el video se ve que detecta muy bien las matrículas. 
 
 # Explicación general 
 
 Este proyecto está diseñado para realizar la detección y el seguimiento de personas y vehículos en video utilizando modelos de inteligencia artificial basados en la arquitectura YOLO (You Only Look Once). Las principales funcionalidades del código incluyen:
 
-Detección de Objetos: Utiliza el modelo YOLO para identificar y clasificar objetos en tiempo real en un video. Hay 2 modelos, uno general yolo11n.pt que reconoce cinco tipos de clases: personas, bicicletas, coches,motocicletas y autobuses. Y un segundo que es el modelo que detecta las matrículas, train32.pt, que ha sido creado por nosotros.
+Detección de objetos: Utiliza el modelo YOLO para identificar y clasificar objetos en tiempo real en un video. Hay 2 modelos, uno general, yolo11n.pt, que reconoce cinco tipos de clases: personas, bicicletas, coches, motocicletas y autobuses. Y un segundo que es el modelo que detecta las matrículas, train32.pt, que ha sido creado por nosotros.
 
-Seguimiento de Objetos: Implementa un sistema de seguimiento que asigna un identificador único (ID de seguimiento) a cada objeto detectado, permitiendo rastrear su movimiento a lo largo de los fotogramas del video.
+Seguimiento de objetos: Implementa un sistema de seguimiento que asigna un identificador único (ID de seguimiento) a cada objeto detectado, permitiendo rastrear su movimiento a lo largo de los fotogramas del video.
 
-Reconocimiento de Matrículas: Emplea un modelo especializado en la detección de matrículas de vehículos. Una vez que se detecta una matrícula, se aplica un sistema de OCR (Reconocimiento Óptico de Caracteres) para extraer el texto de la matrícula y su nivel de confianza.
+Reconocimiento de matrículas: Emplea un modelo especializado en la detección de matrículas de vehículos. Una vez que se detecta una matrícula, se aplica un sistema de OCR (Reconocimiento Óptico de Caracteres) para extraer el texto de la matrícula y su nivel de confianza.
 
-Análisis de Direcciones: Clasifica la dirección de movimiento de los objetos (si vienen de frente o de atrás) basándose en su posición horizontal en el marco del video.
+Análisis de direcciones: Clasifica la dirección de movimiento de los objetos (si vienen de frente o de atrás) basándose en su posición horizontal en el marco del video.
 
-Difuminado de Imágenes para anonimato: El código aplica un desenfoque a las imágenes de las personas y vehículos detectados, mientras que las matrículas se mantienen visibles. 
+Difuminado de imágenes para anonimato: El código aplica un desenfoque a las imágenes de las personas y vehículos detectados, mientras que las matrículas se mantienen visibles. 
 
-Salida de Datos: Los resultados de la detección se almacenan en un archivo CSV que incluye información como el tipo de objeto, el nivel de confianza, el identificador de seguimiento, las coordenadas del cuadro delimitador y, en caso de vehículos, la información de la matrícula.
+Salida de datos: Los resultados de la detección se almacenan en un archivo CSV que incluye información como el tipo de objeto, el nivel de confianza, el identificador de seguimiento, las coordenadas del cuadro delimitador y, en caso de vehículos, la información de la matrícula.
 
 Se implementa un sistema de anonimato para proteger la identidad de personas y vehículos en las imágenes y videos procesados. Esto se logra mediante un enfoque de desenfoque en áreas específicas de la imagen, asegurando que la información sensible no sea visible.
 
@@ -174,7 +181,7 @@ Se implementa un sistema de anonimato para proteger la identidad de personas y v
   - Las áreas donde se detectan las matrículas se mantienen nítidas y se les permite mostrar el texto de la matrícula bajo condiciones de confianza específicas.
   - Se aplica un desenfoque en el resto del vehículo, asegurando que las matrículas sean visibles, pero la información de contexto (como la imagen del vehículo) esté difuminada.
  
-Generación de Video de Salida: El resultado del procesamiento se guarda en un nuevo archivo de video donde se destacan las detecciones y se muestra información adicional sobre cada objeto. Este archivo resultante se encuentra [aquí](https://alumnosulpgc-my.sharepoint.com/:v:/g/personal/elena_morales104_alu_ulpgc_es/ETVBdUMhXaRBnUolhiwRJTEBJwjz3SAbVRdcSkOJzAzSpw?e=yQCVO9&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
+Generación de video de salida: El resultado del procesamiento se guarda en un nuevo archivo de video donde se destacan las detecciones y se muestra información adicional sobre cada objeto. Este archivo resultante se encuentra [aquí](https://alumnosulpgc-my.sharepoint.com/:v:/g/personal/elena_morales104_alu_ulpgc_es/ETVBdUMhXaRBnUolhiwRJTEBJwjz3SAbVRdcSkOJzAzSpw?e=yQCVO9&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
 
 ## Anonimización de transeúntes y vehículos
 
@@ -183,8 +190,7 @@ Este enfoque permite mantener un balance entre la utilidad del sistema de detecc
 ![image](https://github.com/user-attachments/assets/f7013d51-8f31-4850-ac31-6d6ad7b73c23)
 
 ## Identificación de texto (OCR)
-El objetivo es detectar y extraer texto de imágenes, como matrículas de vehículos, utilizando la biblioteca EasyOCR y técnicas de procesamiento de imágenes con OpenCV. Intentando tener la mayor
-probabilidad de detección.
+El objetivo es detectar y extraer texto de imágenes, como matrículas de vehículos, utilizando la biblioteca EasyOCR y técnicas de procesamiento de imágenes con OpenCV. Intentando tener la mayor probabilidad de detección.
 
 ### 1. Función mostrar_imagen(imagen):*
 Esta función recibe una imagen y la muestra utilizando Matplotlib. Convierte la imagen de BGR (formato usado por OpenCV) a RGB para su correcta visualización.
@@ -202,10 +208,10 @@ Esta función ejecuta un ciclo para mejorar la detección de texto en la imagen 
 Realiza el post-procesamiento de la imagen, aplicando un desenfoque gaussiano y ajustando el contraste. Se asegura de que la imagen tenga dimensiones adecuadas.
 
 ### 6. Función detectar_texto(imagen_procesada):
-Utiliza EasyOCR para detectar texto en la imagen procesada. Retorna la región de interés (ROI) donde se ha detectado texto, junto con el texto y su probabilidad de detección. Si hay varias de detecciones intenta abarcar todo el area de la imagen.
+Utiliza EasyOCR para detectar texto en la imagen procesada. Retorna la región de interés (ROI) donde se ha detectado texto, junto con el texto y su probabilidad de detección. Si hay varias detecciones intenta abarcar todo el área de la imagen.
 
 
-Posteriormente a la hora de la detección se le da prioridad de que la longitud del texto sea la adecuada, aunque la probabilidad de la imagen sea peor. Para optimizar que el resultado sea el más cercano posible al texto de la matrícula.
+Posteriormente, a la hora de la detección se le da prioridad de que la longitud del texto sea la adecuada, aunque la probabilidad de la imagen sea peor. Para optimizar que el resultado sea el más cercano posible al texto de la matrícula.
 
 ![alt text](image.png)
 
@@ -222,7 +228,6 @@ Parámetros
 label_name (str): Nombre de la clase del objeto (p. ej., "person", "bicycle", "car").
 * x (int): Coordenada X del borde derecho del objeto en el fotograma.
 frame (np.array): Imagen del fotograma actual, que se utiliza para obtener el ancho del fotograma.
-Funcionamiento
 
 #### Comprobación del estado del track_id: 
 
@@ -236,7 +241,7 @@ Para personas y bicicletas: Se considera que vienen "de frente" (to_front) si es
 Para otros objetos (vehículos): Los vehículos se clasifican como "from_front" si su coordenada X está en el 70% de la parte izquierda del fotograma, o como "to_front" si están en el 10% de la derecha (es decir, más allá del 90% del ancho del fotograma).
 Almacenamiento en el diccionario datos: Según la clasificación, el track_id se añade a la lista correspondiente (from_front o to_front) dentro de la categoría especificada en label_name.
 
-En el conteo final solo tiene los vehiculos en circulación no contabiliza los que están aparcados
+En el conteo final solo tiene los vehículos en circulación.No contabiliza los que están aparcados.
 
 ![alt text](conteo.jpeg)
 
