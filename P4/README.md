@@ -89,20 +89,6 @@
     import matplotlib.pyplot as plt
     ```
   - **Descripción**: Biblioteca de visualización gráfica usada para mostrar imágenes, gráficas y resultados de análisis.
-
-- **PIL (Pillow)**: ![Pillow](https://img.shields.io/badge/Pillow-Latest-red?style=flat-square&logo=pillow)
-  - **Importación**:
-    ```python
-    from PIL import Image
-    ```
-  - **Descripción**: Biblioteca para la apertura, manipulación y guardado de imágenes en varios formatos.
-
-- **Glob**: ![Glob](https://img.shields.io/badge/Glob-Latest-lightgreen?style=flat-square)
-  - **Importación**:
-    ```python
-    import glob
-    ```
-  - **Descripción**: Módulo que proporciona una función para encontrar todos los nombres de ruta que coinciden con un patrón específico.
     
 - **Ultralytics YOLO DetectionTrainer**: ![DetectionTrainer](https://img.shields.io/badge/DetectionTrainer-Latest-blue?style=flat-square)
   - **Importación**:
