@@ -165,6 +165,17 @@ Tanto en la pérdida como en la precisión se nota que en las primeras épocas l
 
 # Anonimización de transeúntes y vehículos
 
+Se implementa un sistema de anonimato para proteger la identidad de personas y vehículos en las imágenes y videos procesados. Esto se logra mediante un enfoque de desenfoque en áreas específicas de la imagen, asegurando que la información sensible no sea visible.
+
+- **Difuminado de Personas:** Cuando se detecta una persona, se aplica un desenfoque (Gaussian Blur) en la región de interés (ROI) que ocupa. Esto garantiza que las personas no sean identificables en el video de salida.
+
+- **Protección de Matrículas:** Para los vehículos, se detectan las matrículas utilizando un modelo YOLO especializado. Una vez identificadas, se realizan los siguientes pasos:
+
+  - Las áreas donde se detectan las matrículas se mantienen nítidas y se les permite mostrar el texto de la matrícula bajo condiciones de confianza específicas.
+  - Se aplica un desenfoque en el resto del vehículo, asegurando que las matrículas sean visibles, pero la información de contexto (como la imagen del vehículo) esté difuminada.
+
+Este enfoque permite mantener un balance entre la utilidad del sistema de detección y la protección de la privacidad
+
 # Identificación de texto (OCR)
 El objetivo es detectar y extraer texto de imágenes, como matrículas de vehículos, utilizando la biblioteca EasyOCR y técnicas de procesamiento de imágenes con OpenCV. Intentando tener la mayor
 probabilidad de detección.
