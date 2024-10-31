@@ -17,6 +17,29 @@
     import os
     ```
   - **Descripción**: Biblioteca que proporciona funciones para interactuar con el sistema operativo, como la manipulación de archivos y directorios.
+    
+- **JSON**: ![JSON](https://img.shields.io/badge/JSON-Latest-lightblue?style=flat-square)
+  - **Importación**: 
+    ```python
+    import json
+    ```
+  - **Descripción**: Módulo para trabajar con datos en formato JSON (JavaScript Object Notation), permitiendo la conversión entre cadenas JSON y objetos de Python.
+ 
+
+- **Random**: ![Random](https://img.shields.io/badge/Random-Latest-lightyellow?style=flat-square)
+  - **Importación**: 
+    ```python
+    import random
+    ```
+  - **Descripción**: Módulo que implementa funciones para generar números aleatorios y seleccionar elementos al azar de secuencias.
+
+- **Shutil**: ![Shutil](https://img.shields.io/badge/Shutil-Latest-lightgray?style=flat-square)
+  - **Importación**:
+    ```python
+    import shutil
+    ```
+  - **Descripción**: Biblioteca que ofrece una serie de funciones de alto nivel para operaciones de archivos, como copiar y mover archivos y directorios.
+
 
 - **Torch**: ![PyTorch](https://img.shields.io/badge/PyTorch-Latest-red?style=flat-square&logo=pytorch)
   - **Importación**: 
@@ -60,13 +83,6 @@
     ```
   - **Descripción**: Implementación de YOLO (You Only Look Once) para la detección de objetos en imágenes y videos.
 
-- **Pandas**: ![Pandas](https://img.shields.io/badge/Pandas-Latest-orange?style=flat-square&logo=pandas)
-  - **Importación**:
-    ```python
-    import pandas as pd
-    ```
-  - **Descripción**: Librería poderosa para la manipulación de datos en estructuras como DataFrames, útil para manejar conjuntos de datos tabulares.
-
 - **Matplotlib**: ![Matplotlib](https://img.shields.io/badge/Matplotlib-Latest-yellow?style=flat-square&logo=matplotlib)
   - **Importación**:
     ```python
@@ -87,6 +103,20 @@
     import glob
     ```
   - **Descripción**: Módulo que proporciona una función para encontrar todos los nombres de ruta que coinciden con un patrón específico.
+    
+- **Ultralytics YOLO DetectionTrainer**: ![DetectionTrainer](https://img.shields.io/badge/DetectionTrainer-Latest-blue?style=flat-square)
+  - **Importación**:
+    ```python
+    from ultralytics.models.yolo.detect import DetectionTrainer
+    ```
+  - **Descripción**: Clase para entrenar modelos de detección utilizando el algoritmo YOLO de Ultralytics.
+    
+- **Ultralytics YOLO**: ![YOLO](https://img.shields.io/badge/YOLO-Latest-blue?style=flat-square)
+  - **Importación**: 
+    ```python
+    from ultralytics import YOLO
+    ```
+  - **Descripción**: Implementación de YOLO (You Only Look Once) para la detección de objetos en imágenes y videos.
 
 ---
 
@@ -99,7 +129,7 @@
 
 
 ## Introducción
-Este proyecto se divide en 4 elementos que se unifican para dar un resultado conjunto, dos de ellas son optativas, Anonimización y detección de dirección. Las tras dos necesarias para completar la práctica Modelo de detección de matrículas y el identificador de texto (OCR).
+Este proyecto se divide en 4 elementos que se unifican para dar un resultado conjunto, dos de ellas son optativas, Anonimización y detección de dirección. Las tras dos necesarias para completar la práctica Modelo de detección de matrículas y el identificador de texto (OCR). 
 
 # Detector de matrículas (YOLO)
 
@@ -107,7 +137,31 @@ Se ha usado este dataset proporcionado en el proyecto, puedes utilizar el siguie
 
 [Dataset](https://alumnosulpgc-my.sharepoint.com/:u:/g/personal/elena_morales104_alu_ulpgc_es/EfKtczlxJQFIlWnynEJdK8gBURi6-WyTLEQyttN8zKxAuw?e=m1TvBb)
 
-Este archivo contiene las imágenes y las etiquetas necesarias para entrenar el modelo de detección de matrículas en formato YOLO. 
+Este archivo contiene las imágenes y las etiquetas necesarias para entrenar el modelo de detección de matrículas en formato YOLO. Estas imagenes, son 290 imagenes de matrículas españolas recopiladas de [PlatesMania](https://platesmania.com/es/). El etiquetado de las imagenes se ha usado la herramienta Labelme. En el cuaderno se encuentra el código que hizo la distribución en 70% train, 20% val y 10% test, además de la conversión de formato labelme a YOLO. 
+
+Para la detección de matrículas se ha decidido utilizar DetectionTrainer de Ultralytics. Este entrenador facilita la configuración y el entrenamiento de modelos YOLO.
+
+Hay varios parámetros clave:
+- model: Utiliza el modelo preentrenado yolo11n.pt.
+- data: Define el archivo de configuración de datos license_plates.yaml.
+- epochs: Se entrena durante 150 épocas.
+- batch: Un tamaño de lote de 64 imágenes.
+- imgsz: Tamaño de imagen de 640 píxeles.
+- multi_scale: Permite el entrenamiento con imágenes de diferentes tamaños.
+- workers: Usa 4 procesos para cargar datos en paralelo.
+- device: Selecciona cuda si hay una GPU disponible.
+- verbose: Activa la salida detallada del progreso.
+- lr0: Tasa de aprendizaje inicial de 0.001.
+- weight_decay: Penalización de 0.001 para evitar sobreajuste.
+- patience: Permite 25 épocas sin mejora antes de detener el entrenamiento.
+- augment: Habilita la aumentación de datos.
+
+De este modelo que se encuentra en /runs/detect/train32/weight/best.pt se ha sacado los siguientes resultados. 
+![image](https://github.com/user-attachments/assets/bab0ef34-58c8-4c33-a56b-8b25cf7aca3f)
+![image](https://github.com/user-attachments/assets/ba678634-2058-4e67-8f74-5fbd3b2ef518)
+
+Tanto en la pérdida como en la precisión se nota que en las primeras épocas le cuesta pero luego rápidamente sobre la época 15 mejora conciderablemente. Esta rápida mejora nos pareció un poco raro, pensabamos que quizás estaba memorizando las imagenes, pero cuando lo comprobamos en el video se ve que detecta muy bien las matrículas. 
+
 
 # Anonimización de transeúntes y vehículos
 
