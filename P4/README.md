@@ -162,7 +162,23 @@ De este modelo que se encuentra en /runs/detect/train32/weight/best.pt se ha sac
 
 Tanto en la pérdida como en la precisión se nota que en las primeras épocas le cuesta pero luego rápidamente sobre la época 15 mejora conciderablemente. Esta rápida mejora nos pareció un poco raro, pensabamos que quizás estaba memorizando las imagenes, pero cuando lo comprobamos en el video se ve que detecta muy bien las matrículas. 
 
+# Explicación general 
 
+Este proyecto está diseñado para realizar la detección y el seguimiento de personas y vehículos en video utilizando modelos de inteligencia artificial basados en la arquitectura YOLO (You Only Look Once). Las principales funcionalidades del código incluyen:
+
+Detección de Objetos: Utiliza el modelo YOLO para identificar y clasificar objetos en tiempo real en un video. Hay 2 modelos, uno general yolo11n.pt que reconoce cinco tipos de clases: personas, bicicletas, coches,motocicletas y autobuses. Y un segundo que es el modelo que detecta las matrículas, train32.pt, que ha sido creado por nosotros.
+
+Seguimiento de Objetos: Implementa un sistema de seguimiento que asigna un identificador único (ID de seguimiento) a cada objeto detectado, permitiendo rastrear su movimiento a lo largo de los fotogramas del video.
+
+Reconocimiento de Matrículas: Emplea un modelo especializado en la detección de matrículas de vehículos. Una vez que se detecta una matrícula, se aplica un sistema de OCR (Reconocimiento Óptico de Caracteres) para extraer el texto de la matrícula y su nivel de confianza.
+
+Análisis de Direcciones: Clasifica la dirección de movimiento de los objetos (si vienen de frente o de atrás) basándose en su posición horizontal en el marco del video.
+
+Difuminado de Imágenes para anonimato: El código aplica un desenfoque a las imágenes de las personas y vehículos detectados, mientras que las matrículas se mantienen visibles. 
+
+Salida de Datos: Los resultados de la detección se almacenan en un archivo CSV que incluye información como el tipo de objeto, el nivel de confianza, el identificador de seguimiento, las coordenadas del cuadro delimitador y, en caso de vehículos, la información de la matrícula.
+
+Generación de Video de Salida: El resultado del procesamiento se guarda en un nuevo archivo de video donde se destacan las detecciones y se muestra información adicional sobre cada objeto.
 # Anonimización de transeúntes y vehículos
 
 Se implementa un sistema de anonimato para proteger la identidad de personas y vehículos en las imágenes y videos procesados. Esto se logra mediante un enfoque de desenfoque en áreas específicas de la imagen, asegurando que la información sensible no sea visible.
@@ -175,6 +191,8 @@ Se implementa un sistema de anonimato para proteger la identidad de personas y v
   - Se aplica un desenfoque en el resto del vehículo, asegurando que las matrículas sean visibles, pero la información de contexto (como la imagen del vehículo) esté difuminada.
 
 Este enfoque permite mantener un balance entre la utilidad del sistema de detección y la protección de la privacidad
+
+![image](https://github.com/user-attachments/assets/f7013d51-8f31-4850-ac31-6d6ad7b73c23)
 
 # Identificación de texto (OCR)
 El objetivo es detectar y extraer texto de imágenes, como matrículas de vehículos, utilizando la biblioteca EasyOCR y técnicas de procesamiento de imágenes con OpenCV. Intentando tener la mayor
@@ -234,9 +252,5 @@ En el conteo final solo tiene los vehiculos en circulación no contabiliza los q
 
 ![alt text](conteo.jpeg)
 
+![image](https://github.com/user-attachments/assets/b6262b42-86fe-4154-a451-61219c091855)
 
-
-
-
-
-[![Ver video](image-1.png)](https://drive.google.com/file/d/1DAhQNVXcXT-vgKi823JkiUI-vVsC4umz/view?usp=drive_link)
