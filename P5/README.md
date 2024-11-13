@@ -35,3 +35,5 @@ Ejecutar el script para activar la cámara y aplicar filtros. Usa las siguientes
   - **Brook**: Añade afro de Brook.
   - **Chopper**: Añade sombrero de Chopper.
 
+
+![Imagen](../imagenes/gif.gif)
