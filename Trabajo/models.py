@@ -1,9 +1,8 @@
-import asyncio
-from abc import ABC, abstractmethod
+from abc import abstractmethod, ABC
 import time
 
 
-class  AsyncModel:
+class  AsyncModel(ABC):
     def __init__(self):
         self.executing = False
     
@@ -11,7 +10,7 @@ class  AsyncModel:
         return self.executing
     
     @abstractmethod
-    async def get_characteristic(self, id, callback):
+    def get_characteristic(self, id, callback):
         pass
 
 
