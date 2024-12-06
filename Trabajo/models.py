@@ -1,80 +1,50 @@
-from abc import abstractmethod, ABC
 import time
+import threading
+
+class ColorModel():
+
+    def get_characteristic(list_characteristics, callback):
+        time.sleep(1)
+        callback(list_characteristics, 2,"RED")
 
 
-class  AsyncModel(ABC):
-    def __init__(self):
-        self.executing = False
-    
-    def is_executing(self):
-        return self.executing
-    
-    @abstractmethod
-    def get_characteristic(self, id, callback):
-        pass
+class BreedModel():
+
+    def get_characteristic(list_characteristics, callback):
+        time.sleep(1)
+        callback(list_characteristics, 3,"DOGE")
 
 
-class ColorModel(AsyncModel):
-    def __init__(self):
-        super().__init__()
-    
-    def get_characteristic(self, list_characteristics, callback):
-        self.executing = True
-        time.sleep(2) # Simula una tarea de larga duración
-        self.executing = False
-        callback(list_characteristics, 1,"RED")
+class EmotionModel() :
 
-
-class BreedModel(AsyncModel):
-    def __init__(self):
-        super().__init__()
-
-    def get_characteristic(self, list_characteristics, callback):
-        self.executing = True
-        time.sleep(5)  # Simula una tarea de larga duración
-        self.executing = False
-        callback(list_characteristics, 2,"DOGE")
-
-
-class EmotionModel(AsyncModel) :
-    def __init__(self):
-        super().__init__()
-    
-    def get_characteristic(self, list_characteristics, callback):
-        self.executing = True
-        time.sleep(3)  # Simula una tarea de larga duración
-        self.executing = False
-        callback(list_characteristics, 3,"HAPPY")
+    def get_characteristic(list_characteristics, callback):
+        time.sleep(1)
+        callback(list_characteristics, 4,"HAPPY")
 
 
 
 class Models:
     
-    def __init__(self, dir):
-        self.dir = dir
-        self.colorModel = ColorModel()
-        self.breedModel = BreedModel()
-        self.emotionModel = EmotionModel()
+    def __init__(self, map):
+        self.map = map
+        self.pause_event_color = threading.Event()
+        self.pause_event_breed = threading.Event()
+        self.pause_event_emotion = threading.Event()
     
     
-    def set_characteristics(self, frame, id, score):
-        list_characteristics = self.dir.get(id, [0,"","",""])
-        self.dir[id] = list_characteristics
-        tasks = []
+    def set_characteristics(self, id):
+        list_characteristics = self.map[id] 
         
-        list_characteristics[0] = score
-        print("llega")
+        ColorModel.get_characteristic(list_characteristics, self.set_value_callback)
+
+        BreedModel.get_characteristic(list_characteristics, self.set_value_callback)
+
+        EmotionModel.get_characteristic(list_characteristics, self.set_value_callback)
         
-        if not self.colorModel.is_executing():
-            tasks.append(self.colorModel.get_characteristic(list_characteristics, self.set_value_callback))
-        
-        if not self.breedModel.is_executing():
-            tasks.append(self.breedModel.get_characteristic(list_characteristics, self.set_value_callback))
-        
-        if not self.emotionModel.is_executing():
-            tasks.append(self.emotionModel.get_characteristic(list_characteristics, self.set_value_callback))
-        
+        list_characteristics[5] += 1
+
 
     def set_value_callback(self, list_characteristics, index, value):
         list_characteristics[index] = value
+        
 
