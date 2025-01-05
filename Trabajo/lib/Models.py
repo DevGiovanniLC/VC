@@ -7,9 +7,11 @@ from lib.EmotionClassificator import EmotionClassificator
 class ColorModel:
     def __init__(self):
         self.color_detector = ColorDetector()
-    
+
     def get_characteristic(self, list_characteristics, callback):
-        color_name, color_rgb = self.color_detector.detect_color(list_characteristics[0])
+        color_name, color_rgb = self.color_detector.detect_color(
+            list_characteristics[0]
+        )
         print(color_name)
         callback(list_characteristics, 2, color_rgb)
 
@@ -20,16 +22,16 @@ class BreedModel:
 
     def get_characteristic(self, list_characteristics, callback):
         result = self.breed_detector.predict_image(list_characteristics[0])
-        callback(list_characteristics, 3, result['class'])
+        callback(list_characteristics, 3, result["class"])
 
 
 class EmotionModel:
     def __init__(self):
         self.emotion_detector = EmotionClassificator()
-    
+
     def get_characteristic(self, list_characteristics, callback):
         result = self.emotion_detector.predict_image(list_characteristics[0])
-        callback(list_characteristics, 4, result['class'])
+        callback(list_characteristics, 4, result["class"])
 
 
 class Models:
@@ -43,11 +45,17 @@ class Models:
     def set_characteristics(self, id):
         list_characteristics = self.map[id]
 
-        self.color_model.get_characteristic(list_characteristics, self.set_value_callback)
+        self.color_model.get_characteristic(
+            list_characteristics, self.set_value_callback
+        )
 
-        self.breed_model.get_characteristic(list_characteristics, self.set_value_callback)
+        self.breed_model.get_characteristic(
+            list_characteristics, self.set_value_callback
+        )
 
-        self.emotion_model.get_characteristic(list_characteristics, self.set_value_callback)
+        self.emotion_model.get_characteristic(
+            list_characteristics, self.set_value_callback
+        )
 
         list_characteristics[5] += 1
 
