@@ -19,7 +19,8 @@ Las funcionalidades de detección son las siguientes:
 
 * **Seguimiento de perros**: El sistema de seguimiento de perros se encarga de detectar y seguir a uno o varios perros en el video, esto se consigue gracias al uso de *YOLOv11*.
 
-* **Detección de color**: El sistema de detección de color no es del todo preciso pero puede ser eficaz en base a la raza detectada, ya que la mayoría de los perros tienen un color dominante. Y de esta manera se puede identificar a los perros. Así funciona el sistema de detección de color, utilizando K-Means para obtener el color dominante de la región central de la imagen anteriormente recortada por yolo centrando al perro.
+* **Detección de color**: El sistema de detección de color no es del todo preciso pero puede ser eficaz en base a la raza detectada, ya que la mayoría de los perros tienen un color dominante. Así funciona el sistema de detección de color, utilizando K-Means para obtener el color dominante de la región central de la imagen anteriormente recortada por yolo centrando al perro en esa imagen.
+A partir de este color se puede obtener el nombre del color más cercano en inglés. para ellos usamos un archivo json que contiene los nombre de colores en inglés y sus valores RGB.
 
 * **Detección de razas de perros**: El sistema de detección raza de perros se se realiza primeramente detenctando al perro en el video gracias a *YOLOv11*, y luego utilizando una red neuronal entrenada para poder identificar a los perros, *ResNet50*.
 
