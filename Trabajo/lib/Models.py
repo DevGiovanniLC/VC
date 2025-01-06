@@ -9,11 +9,10 @@ class ColorModel:
         self.color_detector = ColorDetector()
 
     def get_characteristic(self, list_characteristics, callback):
-        color_name, color_rgb = self.color_detector.detect_color(
+        color_rgb, color_name = self.color_detector.detect_color(
             list_characteristics[0]
         )
-        print(color_name)
-        callback(list_characteristics, 2, color_rgb)
+        callback(list_characteristics, 2, color_name)
 
 
 class BreedModel:
