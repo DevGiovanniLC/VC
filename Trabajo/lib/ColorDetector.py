@@ -1,11 +1,14 @@
 import cv2
 import numpy as np
 from sklearn.cluster import KMeans
-import matplotlib.pyplot as plt
 from lib.RGBName import RGBName
 
 
 class ColorDetector:
+    """
+    Clase para detectar el color dominante de una imagen, usando K-Means.
+    Sirve para intentar erstimar el color de un perro en este caso
+    """
     def __init__(self):
         self.color_to_name = RGBName("./lib/resources/colors.json")
 

@@ -18,8 +18,11 @@ class ResNetClassifier(nn.Module):
 
 
 class EmotionClassificator:
+    """
+    Clase para la clasificación de emociones usando un modelo pre-entrenado de resnet50
+    """
+    
     def __init__(self):
-
         EMOTION_MODEL_PATH = "./models/resnet50_emotion.pth"
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 

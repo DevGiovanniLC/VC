@@ -2,6 +2,10 @@ import pandas as pd
 
 
 class DataLoader:
+    """
+    Clase para la cargar de datos de CSVs de inteligencia y atributos y para realizar búsquedas
+    """
+    
     def __init__(self):
         self.data_intelligence = pd.read_csv(
             "./data/dog_intelligence.csv", index_col=["Breed"]
@@ -58,6 +62,9 @@ class DataLoader:
 
 
 class Search:
+    """
+    Clase para realizar búsquedas en el archivo de datos
+    """
     def __init__(self, data):
         self.__data = data
         self.__attibuteList = []
@@ -77,7 +84,10 @@ class Search:
 
 
 class RangeType:
-
+    """
+    Clase para representar un rango de valores
+    """
+    
     def __init__(self, list, units):
         self.list = list
         self.units = units
@@ -89,10 +99,3 @@ class RangeType:
         
         return f"({round(self.list[0], 2)} - {round(self.list[1], 2)}) {self.units}"
 
-
-if __name__ == "__main__":
-    loader = DataLoader()
-    # print(loader.data_atributtes)
-    search = loader.get_attributes("Labrador Retriever")
-
-    print(search)

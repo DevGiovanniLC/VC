@@ -18,12 +18,15 @@ class ResNetClassifier(nn.Module):
 
 
 class BreedClassificator:
+    """
+    Clase para la detección de una raza de perro a partir de una imagen
+    """
     def __init__(self):
 
         BREED_MODEL_PATH = "./models/resnet50_breed.pth"
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
-        self.breed_classes = [
+        self.breed_classes = [ # Todas las razas de perros detectables
             "chihuahua",
             "japanese_spaniel",
             "maltese_dog",

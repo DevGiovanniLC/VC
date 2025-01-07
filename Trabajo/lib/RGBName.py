@@ -8,39 +8,16 @@ class RGBName:
     """
 
     def __init__(self, color_file: str):
-        """
-        Inicializa la clase cargando los colores desde un archivo JSON.
-
-        Args:
-            color_file (str): Ruta al archivo JSON con los colores.
-        """
         with open(color_file, "r") as file:
-            self.color_data = json.load(file)["colors"]
+            self.color_data = json.load(file)["colors"] # Carga los colores de un archivo JSON
 
     @staticmethod
     def _color_distance(c1: Tuple[int, int, int], c2: Tuple[int, int, int]) -> float:
-        """
-        Calcula la distancia entre dos colores RGB.
-
-        Args:
-            c1 (Tuple[int, int, int]): Primer color en formato RGB.
-            c2 (Tuple[int, int, int]): Segundo color en formato RGB.
-
-        Returns:
-            float: Distancia ponderada entre los colores.
-        """
+        # Calcula la distancia entre dos colores
         return sum((a - b) ** 2 for a, b in zip(c1, c2)) ** 0.5
 
     def get_color_name(self, rgb: Tuple[int, int, int]) -> str:
-        """
-        Obtiene el nombre del color más cercano al RGB proporcionado.
 
-        Args:
-            rgb (Tuple[int, int, int]): Color en formato RGB (0-255).
-
-        Returns:
-            str: Nombre del color más cercano.
-        """
         closest_color = None
         min_distance = float("inf")
 
@@ -50,4 +27,5 @@ class RGBName:
                 min_distance = distance
                 closest_color = name
 
+        # Si no se encontró ningún color cercano, devuelve "Unknown"
         return closest_color or "Unknown"

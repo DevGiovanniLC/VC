@@ -6,12 +6,10 @@ class EnumDataLoader (Enum):
 	WEIGHT = 2
 
 
-class EnumDogList(Enum):
+class EnumDogList (Enum):
 	FRAME = 0
 	ACCURACY = 1
 	COLOR = 2
 	BREED = 3
 	EMOTION = 4
 	COUNT = 5
-
-
