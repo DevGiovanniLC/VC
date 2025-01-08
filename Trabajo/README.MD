@@ -34,8 +34,82 @@ A partir de este color se puede obtener el nombre del color más cercano en ingl
 El proyecto está dividido en diferentes scripts, los cuales se encargan de realizar diferentes tareas, empaquetando dichas funcionalidades en clases. Esto se hace, para poder subdividir el código y que sea más sencillo de visualizar y entender. Todos los scripts se encuentran en la carpeta `lib`. Todos ellos se usan entre si o se usa en el archivo `trabajo_final.ipynb`.
 
 
-## Entrenamiento de modelos Resnet50
+## Clasificación de Imágenes de Perros: Razas y Emociones
 
+Uno de los objetivos del proyecto es crear modelos que clasifiquen imágenes de perros según su raza y emoción. Para ello, se han utilizado conjuntos de datos como Stanford Dogs, 9Breeds y un dataset de emociones caninas.
+
+### Preprocesamiento de Datos
+
+#### Recorte de Bounding Boxes
+Para el dataset de Stanford Dogs, al contar con un etiquetado con bounding boxes, se parsean archivos XML asociados a cada imagen para extraer el bounding box principal y recortar la imagen en consecuencia. Esta técnica asegura que el modelo se enfoque en la región de interés que contiene al perro, mejorando la calidad de las características aprendidas y evitando procesar características irrelevantes.
+
+#### Unificación de Datos
+Se combinan datos de múltiples fuentes (Stanford Dogs y 9Breeds) en un único DataFrame para la clasificación de razas, y se procesan etiquetas de emociones para crear un DataFrame similar para emociones.
+
+#### Estratificación
+La división del dataset en conjuntos de entrenamiento, validación y prueba se realiza usando estratificación, asegurando que la distribución de clases se mantenga consistente en cada subconjunto. Esto ayuda a evitar desbalance en las clases.
+
+### Aumento de Datos (Data Augmentation)
+
+#### Transformaciones Básicas
+Se aplican técnicas de data augmentation para enriquecer el conjunto de entrenamiento y mejorar la capacidad de generalización del modelo. Cambios como redimensionar imágenes, aplicar volteo horizontal aleatorio y rotaciones leves ayudan a reducir el riesgo de sobreajuste.
+
+### Modelos Utilizados
+
+#### ResNet50
+Se utiliza una versión congelada para tareas de clasificación de razas y emociones, donde únicamente se entrena la capa final. Esto reduce el tiempo de entrenamiento y aprovecha características generales aprendidas en ImageNet.
+
+#### EfficientNet-B0
+Se implementan variantes basadas en EfficientNet-B0. Este modelo es más ligero, pero en el proyecto se observó que no aportaba una gran diferencia con ResNet50, dando peores resultados en comparación.
+
+#### Personalización de la Capa Final
+Para cada modelo, se reemplaza la capa final (fully connected) para adaptarla al número específico de clases de la tarea (razas o emociones). Se incorporan capas adicionales, activaciones ReLU y dropout para introducir no linealidad y regularización.
+
+### Configuración del Entrenamiento
+
+#### Optimización
+Se utiliza el optimizador AdamW con funciones de pérdida como CrossEntropyLoss, considerando la opción de suavizado de etiquetas (label smoothing).
+
+#### Scheduler
+Se implementa un scheduler (ReduceLROnPlateau) que reduce la tasa de aprendizaje cuando la pérdida de validación no mejora, ayudando a afinar el modelo conforme avanza el entrenamiento.
+
+#### Early Stopping
+El entrenamiento se detiene tempranamente si la pérdida de validación no mejora tras un número definido de épocas consecutivas (patience). Esto previene el sobreajuste y ahorra tiempo de cómputo.
+
+#### Weighted Random Sampling
+Para manejar el desbalanceo de clases, se utiliza WeightedRandomSampler en los DataLoaders, asignando pesos inversamente proporcionales a la frecuencia de cada clase.
+
+### Técnicas de Regularización y Mejora
+
+#### Dropout
+Se emplean capas de dropout en los clasificadores para evitar que el modelo se sobreajuste a los datos de entrenamiento.
+
+#### Label Smoothing
+El suavizado de etiquetas reduce la confianza extrema en las etiquetas verdaderas, lo cual mejora la generalización del modelo.
+
+### Evaluación y Resultados
+El código incluye funciones para evaluar los modelos en conjuntos de prueba:
+
+- **Classification Report**: Se generan reportes detallados con precisión, recall y f1-score para cada clase.
+- **Confusion Matrix**: Se visualiza la matriz de confusión para identificar errores comunes de clasificación.
+- **Curvas de Pérdida**: Se grafican las curvas de pérdida de entrenamiento y validación a lo largo del tiempo para monitorear el comportamiento del modelo.
+
+### Decisiones de Diseño
+
+- **Modelo Base Preentrenado**:  
+  Se eligieron probar modelos como ResNet50 y EfficientNet-B0 por su capacidad de transferencia y buen rendimiento en tareas de clasificación de imágenes. Se decidió utilizar ResNet50 debido a que daba mejores resultados en este contexto.
+
+- **Congelamiento Parcial**:  
+  Inicialmente se congela la mayor parte del modelo y solo se entrena la capa final para ahorrar tiempo. Luego se exploran técnicas más complejas si es necesario.
+
+- **Data Augmentation**:  
+  Se utilizan transformaciones para mejorar la robustez, con la flexibilidad de ajustar la agresividad según los recursos y resultados.
+
+- **Balance entre Complejidad y Rendimiento**:  
+  Se ofrecen configuraciones más simples para entornos con limitaciones de tiempo y computación, y configuraciones más complejas para maximizar la precisión cuando los recursos lo permiten.
+
+- **Uso de Logging y Monitoreo**:  
+  Se incorporó la librería `logging` para una salida estructurada y fácil de seguir, mejorando la depuración y el análisis de resultados.
 
 ## Uso
 El proyecto se puede ejecutar con el archivo `trabajo_final.ipynb` este ejecutara todos los scripts y realizará la detección y seguimiento de los perros en el video, mostrando un rectangulo donde ubica cada perro en el video además de mostrar su raza, estado emocional, color y tamaño.
