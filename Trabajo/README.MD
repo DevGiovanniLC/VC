@@ -10,7 +10,64 @@
 ---
 ## Fuentes y tecnologías utilizadas
 
+### Fuentes de Datos
+
+Se han utilizado los siguientes datasets:
+
+* **[Stanford Dogs Dataset](https://www.kaggle.com/datasets/jessicali9530/stanford-dogs-dataset)**: Ofrece imágenes y etiquetas de 120 razas de perros, proporcionando una amplia variedad para entrenar modelos de clasificación y detección.
+
+* **[9 Dogs Breeds Identification & Classification](https://www.kaggle.com/datasets/muhammadhananasghar/9-dogs-breeds-identification-classification)**: Proporciona imágenes de 5 razas no incluidas en el Stanford Dogs Dataset, además de 4 razas ya presentes, con el fin de ampliar el conjunto de datos final para una mejor generalización y precisión en la identificación.
+
+* **[Dog Emotions Prediction](https://www.kaggle.com/datasets/devzohaib/dog-emotions-prediction)**: Contiene imágenes etiquetadas según 4 estados emocionales diferentes.
+
+* **[Dogs Intelligence and Size](https://www.kaggle.com/datasets/thedevastator/canine-intelligence-and-size/data?select=dog_intelligence.csv)**: Ofrece información detallada sobre razas de perros, incluyendo datos relacionados con la inteligencia y el tamaño, los cuales son utilizados para estimar características específicas durante el seguimiento y análisis.
+
+### Modelos de Detección y Clasificación:
+
+* **YOLOv11**: Utilizado para la detección y seguimiento de perros en videos.
+* **ResNet50**: Empleado para la clasificación de razas y emociones de perros. Se aprovecha su arquitectura preentrenada para transferir conocimientos de ImageNet y adaptar la capa final a las clases específicas del proyecto.
+* **EfficientNet-B0** : Mencionado como alternativa a ResNet50. A pesar de ser más ligero, no ofreció una mejora significativa en comparación con ResNet50 en este contexto.
+
+### Librerías y Frameworks de Programación:
+
+El proyecto hace uso de diversas librerías y frameworks esenciales para el desarrollo y la ejecución de sus funcionalidades. A continuación se listan y describen las principales:
+
+* **Python 3.x**: Lenguaje principal utilizado para implementar los scripts y manejar el procesamiento de datos, entrenamiento y evaluación de modelos.
+### Librerías y Frameworks Utilizados
+
+#### Manipulación de Archivos y Estructuras de Datos
+- **os**, **glob**, **copy**: Gestión de rutas, archivos y copias de estructuras de datos.
+- **logging**: Registro estructurado de eventos para depuración y monitoreo.
+- **xml.etree.ElementTree**: Parseo de archivos XML, útil para extraer bounding boxes de anotaciones.
+  
+#### Procesamiento de Datos y Análisis
+- **pandas**: Manejo y análisis de estructuras de datos tabulares.
+- **numpy**: Cálculo numérico y manejo eficiente de arrays.
+
+#### Imagen y Visión por Computador
+- **PIL (Pillow)**: Manipulación básica de imágenes.
+- **cv2 (OpenCV)**: Procesamiento avanzado de imágenes y video.
+- **sklearn.cluster.KMeans**: Algoritmo de clustering para la detección del color dominante.
+
+#### Aprendizaje Automático y Redes Neuronales
+- **torch**, **torch.nn**, **torch.optim**: Base para el desarrollo y entrenamiento de redes neuronales con PyTorch.
+- **torchvision**: Herramientas y modelos preentrenados (como ResNet50 y EfficientNet-B0) para visión artificial.
+- **sklearn.model_selection**, **sklearn.metrics**: División de datos, validación y evaluación de modelos.
+
+#### Manejo de Concurrencia y Estructuras de Control
+- **queue.Queue**, **threading**: Implementación de hilos y colas para procesamiento en paralelo.
+
+#### Visualización de Datos
+- **matplotlib.pyplot**, **seaborn**: Generación de gráficos y visualización de datos para análisis.
+
+#### Modelos y Utilidades del Proyecto
+- **ultralytics.YOLO**: Modelo de detección de objetos YOLOv11 para identificar y seguir perros en video.
+- **lib.Models**, **lib.Dataloader**, **lib.Enums**, **lib.RGBName**: Módulos personalizados que encapsulan la lógica específica del proyecto, como la definición de modelos, carga de datos y utilidades auxiliares.
+
+
 ## Motivación/argumentación del trabajo
+
+Este proyecto se ha creado para facilitar la detección y seguimiento de perros identificado sus razas, emociones, color y tamaño(estándar). Ya que estás tareas pueden ser complicadas de hacer para una persona y creemos que utilizar modelos que detecten estas cualidades son útiles para muchos entornos como veterinarios, seguridad, personas con visión reducida o simplemente para que las personas sepan que clase de raza es su perro o, en el peor de los casos, a cual se parece más.
 
 ## Objetivos
 El objetivo del proyecto es el de crear un sistema de detección y seguimiento de perros en un video, con la finalidad de poder identificar a los perros, obteniendo su color, su raza, su tamaño, su estado emocional.
@@ -95,8 +152,13 @@ El suavizado de etiquetas reduce la confianza extrema en las etiquetas verdadera
 El código incluye funciones para evaluar los modelos en conjuntos de prueba:
 
 - **Classification Report**: Se generan reportes detallados con precisión, recall y f1-score para cada clase.
+
+
 - **Confusion Matrix**: Se visualiza la matriz de confusión para identificar errores comunes de clasificación.
+
 - **Curvas de Pérdida**: Se grafican las curvas de pérdida de entrenamiento y validación a lo largo del tiempo para monitorear el comportamiento del modelo.
+
+
 
 ### Decisiones de Diseño
 
@@ -115,16 +177,23 @@ El código incluye funciones para evaluar los modelos en conjuntos de prueba:
 - **Uso de Logging y Monitoreo**:  
   Se incorporó la librería `logging` para una salida estructurada y fácil de seguir, mejorando la depuración y el análisis de resultados.
 
-## Resultados entrenamiento y validación
 
 ## Uso
 El proyecto se puede ejecutar con el archivo `trabajo_final.ipynb` este ejecutara todos los scripts y realizará la detección y seguimiento de los perros en el video, mostrando un rectangulo donde ubica cada perro en el video además de mostrar su raza, estado emocional, color y tamaño.
 
 ## Conclusiones y propuestas de ampliación
 
+Nos hubiera gustado mostrar mejores resultados con aciertos superiores al 90%. Quizas si hubueramos utilziado otras redes neuronales más modernas, como ResNeXt,Inception-v4  o Vision Transformers, por ejemplo, podríamos haber tenido mejores resultados. A pesar de eso seguimos considerando que no han sido resultados malos teniendo en cuenta lo variables que son las razas y aún más las emociones. Si ya les cuesta a otros modelos profesionales detectar las emociones de os humanos, no nos imaginamos lo complicado que es detectar las de los perros. Por lo tanto consideramos que nuestro clasificador y detector sigue siendo útil. 
+
+Como propuestas de ampliación podríamos probar con otras redes neuronales previamente comentadas para comprobar si dan mejores resultados. También podríamos ofrecer mayor informacion sobre los perros como una mejor deteccion del color ( que detecten varios colores) y mayor información relevante sobr elos mismos, por ejemplo si es una raza peligrosa. 
+
 ## Créditos materiales no originales
 
+Este proyecto utiliza materiales y recursos provenientes de fuentes externas que ya se han comentado y referenciado en el apartado de Fuentes.
+
 ## Enlace al código fuente
+
+Este es el enlace a ![GitHub](https://github.com/DevGiovanniLC/VC/tree/main/Trabajo) donde está el código fuente.
 
 ## Vídeo resumen
 
