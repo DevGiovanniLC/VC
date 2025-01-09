@@ -8,7 +8,11 @@
 ---
 ## Fuentes y tecnologías utilizadas
 
-### Fuentes de Datos
+<p align="center">
+  <img src="main_photo.jpg" alt="Description" width="300" />
+</p>
+
+### Fuentes deDatos
 
 Se han utilizado los siguientes datasets:
 
