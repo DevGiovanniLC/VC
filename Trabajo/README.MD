@@ -227,7 +227,7 @@ Este proyecto utiliza materiales y recursos provenientes de fuentes externas que
 Este es el enlace a [GitHub](https://github.com/DevGiovanniLC/VC/tree/main/Trabajo) donde está el código fuente.
 
 ## Vídeo resumen
-
+![video resumen](https://drive.google.com/file/d/1gNX92ya_z7MIjGDLeDqleQ-SUB4cC8m0/view?usp=sharing)
 ---
 
 ## Adversidades tecnicas encontradas durante el desarrollo
