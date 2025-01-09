@@ -9,7 +9,7 @@
 ## Fuentes y tecnologías utilizadas
 
 <p align="center">
-  <img src="main_photo.jpg" alt="Description" width="300" />
+  <img src="https://github.com/DevGiovanniLC/VC/blob/main/Trabajo/main_photo.jpg" alt="Description" width="300" />
 </p>
 
 ### Fuentes deDatos
