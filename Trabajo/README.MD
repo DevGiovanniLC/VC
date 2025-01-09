@@ -178,6 +178,8 @@ El código incluye funciones para evaluar los modelos en conjuntos de prueba:
 ## Uso
 El proyecto se puede ejecutar con el archivo `trabajo_final.ipynb` este ejecutara todos los scripts y realizará la detección y seguimiento de los perros en el video, mostrando un rectangulo donde ubica cada perro en el video además de mostrar su raza, estado emocional, color y tamaño.
 
+Si se quiere entrenar los modelos el codigo correspondiente se encuentran en cnn_training_validation.ipynb, para ejecutar el codigo se necesita descargar la siguiente ![carpeta]( y ponerla en la carpeta Trabajo. 
+
 ## Conclusiones y propuestas de ampliación
 
 Nos hubiera gustado mostrar mejores resultados con aciertos superiores al 90%. Quizas si hubueramos utilziado otras redes neuronales más modernas, como ResNeXt,Inception-v4  o Vision Transformers, por ejemplo, podríamos haber tenido mejores resultados. A pesar de eso seguimos considerando que no han sido resultados malos teniendo en cuenta lo variables que son las razas y aún más las emociones. Si ya les cuesta a otros modelos profesionales detectar las emociones de os humanos, no nos imaginamos lo complicado que es detectar las de los perros. Por lo tanto consideramos que nuestro clasificador y detector sigue siendo útil. 
