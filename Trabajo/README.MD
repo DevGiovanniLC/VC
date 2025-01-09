@@ -167,27 +167,27 @@ Como se puede ver tiene una precisión y recall promedio sobre el 80%, lo cual c
 
 La siguiente imagen muestra que al modelo le cuesta identidicar las emociones,lo cual es de esperar con un 50% de precisión. 
 
-![alt text](image-6.png)
+![alt text](https://github.com/DevGiovanniLC/VC/blob/main/Trabajo/image-6.png)
 
 - **Confusion Matrix**: Se visualiza la matriz de confusión para identificar errores comunes de clasificación.
 
 En el caso de las razas no se aprecia bien la matriz debido a la gran cantidad de clases 
 
-![alt text](image-2.png)
+![alt text](https://github.com/DevGiovanniLC/VC/blob/main/Trabajo/image-2.png)
 
 La matriz muestra claramente que el modelo no ha llegado a comprender bien las diferencias entre las emociones, normal teiendo en cuenta que las razas son diferentes y las emociones son complicadas de captar.
 
-![alt text](image-3.png)
+![alt text](https://github.com/DevGiovanniLC/VC/blob/main/Trabajo/image-3.png)
 
 - **Curvas de Pérdida**: Se grafican las curvas de pérdida de entrenamiento y validación a lo largo del tiempo para monitorear el comportamiento del modelo.
 
 En el caso de las razas se puede ver que la gráfica muestra que la pérdida de entrenamiento disminuye constantemente, mientras que la pérdida de validación se estabiliza temprano, indicando que el modelo está aprendiendo pero podría estar comenzando a sobreajustarse. Esto se evidencia por la brecha entre ambas pérdidas. Aunque el modelo evita un sobreajuste severo gracias a técnicas como Early Stopping, aún podría mejorarse sin embargo durante varios días de entrenamiento no hemos podido arreglar ese sobreajuste y plateu en la validación.
 
-![alt text](image-1.png)
+![alt text](https://github.com/DevGiovanniLC/VC/blob/main/Trabajo/image-1.png)
 
 Como se puede ver las emociones también experimentan un sobreajuste aunque tambien tienen una perdida medianamnete baja, parece ser qye en el entrenamiento ba bastante bien pero no se muestra lo mismo en validación, teniendo también plateu.
 
-![alt text](image-5.png)
+![alt text](https://github.com/DevGiovanniLC/VC/blob/main/Trabajo/image-5.png)
 
 ### Decisiones de Diseño
 
