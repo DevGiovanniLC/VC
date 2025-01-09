@@ -8,13 +8,17 @@
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square&logo=python)
 
 ---
+## Fuentes y tecnologías utilizadas
 
-## Descripción
+## Motivación/argumentación del trabajo
+
+## Objetivos
 El objetivo del proyecto es el de crear un sistema de detección y seguimiento de perros en un video, con la finalidad de poder identificar a los perros, obteniendo su color, su raza, su tamaño, su estado emocional.
 
 El proyecto se ha adaptado para poder hacer esa identificación en tiempo real, gracias al uso de hilos y colas. Además, se ha usado varias optimizaciones para que el proceso de detección sea más rápido y eficiente.
 
-## Funcionalidades
+## Descripción técnica
+
 Las funcionalidades de detección son las siguientes:
 
 * **Seguimiento de perros**: El sistema de seguimiento de perros se encarga de detectar y seguir a uno o varios perros en el video, esto se consigue gracias al uso de *YOLOv11*.
@@ -111,8 +115,18 @@ El código incluye funciones para evaluar los modelos en conjuntos de prueba:
 - **Uso de Logging y Monitoreo**:  
   Se incorporó la librería `logging` para una salida estructurada y fácil de seguir, mejorando la depuración y el análisis de resultados.
 
+## Resultados entrenamiento y validación
+
 ## Uso
 El proyecto se puede ejecutar con el archivo `trabajo_final.ipynb` este ejecutara todos los scripts y realizará la detección y seguimiento de los perros en el video, mostrando un rectangulo donde ubica cada perro en el video además de mostrar su raza, estado emocional, color y tamaño.
+
+## Conclusiones y propuestas de ampliación
+
+## Créditos materiales no originales
+
+## Enlace al código fuente
+
+## Vídeo resumen
 
 ---
 
