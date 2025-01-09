@@ -148,13 +148,31 @@ El suavizado de etiquetas reduce la confianza extrema en las etiquetas verdadera
 ### Evaluación y Resultados
 El código incluye funciones para evaluar los modelos en conjuntos de prueba:
 
-- **Classification Report**: Se generan reportes detallados con precisión, recall y f1-score para cada clase.
+- **Classification Report**: Se generan reportes detallados en el apartado de tests con precisión, recall y f1-score para cada clase.
+
+En el caso de las razas se muestra la media dada por el report:
+
+                                precision    recall  f1-score   support
+
+                      accuracy                           0.80      2163
+                     macro avg       0.81      0.80      0.80      2163
+                  weighted avg       0.81      0.80      0.79      2163
+
+
+Como se puede ver tiene una precisión y recall promedio sobre el 80%, lo cual consideramos un resultado decente pero no ideal.
 
 
 - **Confusion Matrix**: Se visualiza la matriz de confusión para identificar errores comunes de clasificación.
 
+En el caso de las razas no se aprecia bien la matriz debido a la gran cantidad de clases 
+
+![alt text](image-2.png)
+
 - **Curvas de Pérdida**: Se grafican las curvas de pérdida de entrenamiento y validación a lo largo del tiempo para monitorear el comportamiento del modelo.
 
+En el caso de las razas se puede ver que la gráfica muestra que la pérdida de entrenamiento disminuye constantemente, mientras que la pérdida de validación se estabiliza temprano, indicando que el modelo está aprendiendo pero podría estar comenzando a sobreajustarse. Esto se evidencia por la brecha entre ambas pérdidas. Aunque el modelo evita un sobreajuste severo gracias a técnicas como Early Stopping, aún podría mejorarse sin embargo durante varios días de entrenamiento no hemos podido arreglar ese sobreajuste y plateu en la validación.
+
+![alt text](image-1.png)
 
 
 ### Decisiones de Diseño
