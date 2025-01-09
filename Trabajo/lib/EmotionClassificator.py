@@ -7,12 +7,21 @@ import torch.nn as nn
 
 
 class ResNetClassifier(nn.Module):
-    def __init__(self, num_classes):
+    def __init__(self, num_classes, dropout_p=0.5, freeze_backbone=False):
         super(ResNetClassifier, self).__init__()
-        self.resnet = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
-        num_features = self.resnet.fc.in_features
-        self.resnet.fc = nn.Linear(num_features, num_classes)
+        self.resnet = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
 
+        if freeze_backbone:
+            for param in self.resnet.features[:-1].parameters():
+                param.requires_grad = False
+                
+        num_features = self.resnet.fc.in_features
+        self.resnet.fc = nn.Sequential(
+            nn.Linear(num_features, 256),
+            nn.ReLU(),
+            nn.Dropout(p=dropout_p),
+            nn.Linear(256, num_classes)
+        )
     def forward(self, x):
         return self.resnet(x)
 
@@ -23,7 +32,7 @@ class EmotionClassificator:
     """
     
     def __init__(self):
-        EMOTION_MODEL_PATH = "./models/resnet50_emotion.pth"
+        EMOTION_MODEL_PATH = "./models/emotions_classificator.pth"
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
         self.emotion_classes = ["happy", "sad", "angry", "relaxed"]
@@ -31,11 +40,11 @@ class EmotionClassificator:
         # Preprocesamiento de imagen
         self.transform = transforms.Compose(
             [
-                transforms.Resize((224, 224)),
+                transforms.Resize((224, 224)), 
+                transforms.RandomHorizontalFlip(p=0.2),
+                transforms.RandomRotation(5),
                 transforms.ToTensor(),
-                transforms.Normalize(
-                    mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
-                ),
+                transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
             ]
         )
 
