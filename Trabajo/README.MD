@@ -206,7 +206,7 @@ Como se puede ver las emociones también experimentan un sobreajuste aunque tamb
 ## Uso
 El proyecto se puede ejecutar con el archivo `trabajo_final.ipynb` este ejecutara todos los scripts y realizará la detección y seguimiento de los perros en el video, mostrando un rectangulo donde ubica cada perro en el video además de mostrar su raza, estado emocional, color y tamaño.
 
-Si se quiere entrenar los modelos el codigo correspondiente se encuentran en cnn_training_validation.ipynb, para ejecutar el codigo se necesita descargar la siguiente ![carpeta]( y ponerla en la carpeta Trabajo. 
+Si se quiere entrenar los modelos el codigo correspondiente se encuentran en cnn_training_validation.ipynb, para ejecutar el codigo se necesita descargar la siguiente ![carpeta](https://alumnosulpgc-my.sharepoint.com/:u:/g/personal/elena_morales104_alu_ulpgc_es/EedaiHuekEtEjuGp0CfWQI0BxeoIEDVDnvx8i_7URqVEpA?e=ug7XBj) que contienen los datasets y ponerla en la carpeta Trabajo. 
 
 ## Conclusiones y propuestas de ampliación
 
