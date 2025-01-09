@@ -4,8 +4,6 @@
 [![GitHub](https://img.shields.io/badge/GitHub-Elena%20Morales%20Gil-brightgreen?style=flat-square&logo=github)](https://github.com/ElenaMoralesGil)
 
 [![GitHub](https://img.shields.io/badge/GitHub-Giovanni%20León%20Corujo-yellow?style=flat-square&logo=github)](https://github.com/DevGiovanniLC)
-## Tecnologías
-![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square&logo=python)
 
 ---
 ## Fuentes y tecnologías utilizadas
@@ -185,6 +183,10 @@ El proyecto se puede ejecutar con el archivo `trabajo_final.ipynb` este ejecutar
 Nos hubiera gustado mostrar mejores resultados con aciertos superiores al 90%. Quizas si hubueramos utilziado otras redes neuronales más modernas, como ResNeXt,Inception-v4  o Vision Transformers, por ejemplo, podríamos haber tenido mejores resultados. A pesar de eso seguimos considerando que no han sido resultados malos teniendo en cuenta lo variables que son las razas y aún más las emociones. Si ya les cuesta a otros modelos profesionales detectar las emociones de os humanos, no nos imaginamos lo complicado que es detectar las de los perros. Por lo tanto consideramos que nuestro clasificador y detector sigue siendo útil. 
 
 Como propuestas de ampliación podríamos probar con otras redes neuronales previamente comentadas para comprobar si dan mejores resultados. También podríamos ofrecer mayor informacion sobre los perros como una mejor deteccion del color ( que detecten varios colores) y mayor información relevante sobr elos mismos, por ejemplo si es una raza peligrosa. 
+
+## Diario global del grupo
+
+Los primeros días estuvimos buscando datasets e investigando que herramientas y redes neuronales usar. Luego nos dividimos el trabajo una parte de detección de perros, color, y datos extras y otra parte del entrenamiento de los modelos para la deteccion de raza y emociones. Una vez completadas esas partes se hace esta memoria y el video.
 
 ## Créditos materiales no originales
 
