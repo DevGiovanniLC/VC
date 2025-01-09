@@ -33,7 +33,6 @@ Se han utilizado los siguientes datasets:
 El proyecto hace uso de diversas librerías y frameworks esenciales para el desarrollo y la ejecución de sus funcionalidades. A continuación se listan y describen las principales:
 
 * **Python 3.x**: Lenguaje principal utilizado para implementar los scripts y manejar el procesamiento de datos, entrenamiento y evaluación de modelos.
-### Librerías y Frameworks Utilizados
 
 #### Manipulación de Archivos y Estructuras de Datos
 - **os**, **glob**, **copy**: Gestión de rutas, archivos y copias de estructuras de datos.
